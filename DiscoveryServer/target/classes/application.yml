@@ -1,0 +1,35 @@
+spring:
+  profiles: default
+  application:
+    name: discovery-server
+---
+# Clustered discovery not working at the moment. start with default profile 
+spring:
+  profiles: discovery1
+  application:
+    name: discovery-server
+server:
+  port: 8671
+eureka:
+  instance:
+    hostname: discovery-1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery-2:8762/eureka/
+---
+spring:
+  profiles: discovery2
+  application:
+    name: discovery-server
+server:
+  port: 8672
+eureka:
+  instance:
+    hostname: discovery-2
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery-1:8761/eureka/

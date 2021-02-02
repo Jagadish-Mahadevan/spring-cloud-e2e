@@ -17,6 +17,9 @@ public class ConfigClientAppApplication {
 	
 	@Value("${some.other.property}")
 	private String someOtherProperty;
+	
+	@Value("${dbprop}")
+	private String dbProp;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ConfigClientAppApplication.class, args);
@@ -28,6 +31,7 @@ public class ConfigClientAppApplication {
 		sb.append(properties.getProperty());
 		sb.append(" || ");
 		sb.append(someOtherProperty);
+		sb.append(dbProp);
 		
 		return sb.toString();
 	}
